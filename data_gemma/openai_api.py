@@ -86,7 +86,7 @@ class OpenAI(base.LLM):
         'Authorization': f'Bearer {self.key}',
     }
     r = self.session.post(
-        'https://api.openai.com/v1/chat/completions',
+        'https://rp6xx1ll595rf2k1.us-east-1.aws.endpoints.huggingface.cloud/v1/',
         data=req_data,
         headers=header,
     )
