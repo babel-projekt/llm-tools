@@ -31,10 +31,12 @@ class OpenAI(base.LLM):
       self,
       model: str,
       api_key: str,
+      base_url: str,
       verbose: bool = True,
       session: requests.Session | None = None,
   ):
     self.key = api_key
+    self.base_url = base_url
     if not session:
       session = requests.Session()
     self.session: requests.Session = session
@@ -86,7 +88,7 @@ class OpenAI(base.LLM):
         'Authorization': f'Bearer {self.key}',
     }
     r = self.session.post(
-        'https://rp6xx1ll595rf2k1.us-east-1.aws.endpoints.huggingface.cloud/v1/',
+        self.base_url,
         data=req_data,
         headers=header,
     )
