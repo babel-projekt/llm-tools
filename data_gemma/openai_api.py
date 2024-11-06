@@ -31,10 +31,12 @@ class OpenAI(base.LLM):
       self,
       model: str,
       api_key: str,
+      base_url: str,
       verbose: bool = True,
       session: requests.Session | None = None,
   ):
     self.key = api_key
+    self.base_url = base_url
     if not session:
       session = requests.Session()
     self.session: requests.Session = session
@@ -86,7 +88,7 @@ class OpenAI(base.LLM):
         'Authorization': f'Bearer {self.key}',
     }
     r = self.session.post(
-        'https://api.openai.com/v1/chat/completions',
+        self.base_url,
         data=req_data,
         headers=header,
     )
