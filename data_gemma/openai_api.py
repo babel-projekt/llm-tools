@@ -92,4 +92,4 @@ class OpenAI(base.LLM):
         data=req_data,
         headers=header,
     )
-    return r.json()
+    return r
